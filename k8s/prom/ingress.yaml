@@ -18,7 +18,7 @@ spec:
             pathType: Prefix
             backend:
               service:
-                name: prom-grafana
+                name: prometheus-grafana
                 port:
                   number: 80
       host: grafana.rolancia.com
