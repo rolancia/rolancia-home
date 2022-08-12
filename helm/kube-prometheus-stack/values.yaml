@@ -743,8 +743,7 @@ grafana:
 
     ## Labels to be added to the Ingress
     ##
-    labels:
-      release: prometheus
+    labels: {}
 
     ## Hostnames.
     ## Must be provided if Ingress is enable.
@@ -855,7 +854,8 @@ grafana:
     #  namespace: monitoring  (defaults to use the namespace this chart is deployed to)
 
     # labels for the ServiceMonitor
-    labels: {}
+    labels:
+      release: prometheus
 
     # Scrape interval. If not set, the Prometheus default scrape interval is used.
     #
