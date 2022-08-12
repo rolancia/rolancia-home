@@ -743,7 +743,8 @@ grafana:
 
     ## Labels to be added to the Ingress
     ##
-    labels: {}
+    labels:
+      release: prometheus
 
     ## Hostnames.
     ## Must be provided if Ingress is enable.

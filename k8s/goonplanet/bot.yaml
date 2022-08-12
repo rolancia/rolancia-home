@@ -1,0 +1,26 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: bot
+  namespace: goonplanet
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: bot
+      tier: app
+      version: v1
+  template:
+    metadata:
+      labels:
+        app: bot
+        tier: app
+        version: v1
+      annotations:
+        release: prometheus
+    spec:
+      containers:
+        - name: bot
+          image: rolancia1/btmonitorbot
+
+

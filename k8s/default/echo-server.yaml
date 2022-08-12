@@ -15,6 +15,8 @@ spec:
         app: echo
         tier: app
         version: v1
+      annotations:
+        release: prometheus
     spec:
       containers:
         - name: echo

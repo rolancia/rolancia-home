@@ -1,0 +1,25 @@
+apiVersion: networking.istio.io/v1alpha3
+kind: Gateway
+metadata:
+  name: gateway
+  namespace: goonplanet
+spec:
+  selector:
+    app: istio-ingressgateway
+  servers:
+  - port:
+      number: 80
+      name: http
+      protocol: HTTP
+    hosts:
+    - "*"
+  - port:
+      number: 443
+      name: api-https
+      protocol: HTTPS
+    tls:
+      mode: SIMPLE
+      credentialName: "goon-api-cert"
+    hosts:
+    - "api.goonplanet.co.kr"
+
