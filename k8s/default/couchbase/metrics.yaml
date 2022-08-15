@@ -1,0 +1,43 @@
+apiVersion: v1
+kind: Service
+metadata:
+  labels:
+    app.couchbase.com/name: couchbase  
+  name: cb-metrics
+spec:
+  ports:
+spec:
+  ports:
+  - name: metrics
+    port: 8091 
+    protocol: TCP
+  selector:
+    app: couchbase
+    couchbase_cluster: cb
+    couchbase_server: "true"
+  sessionAffinity: ClientIP
+
+
+---
+apiVersion: monitoring.coreos.com/v1
+kind: ServiceMonitor
+metadata:
+  name: cb-prometheus
+  namespace: default
+spec:
+  endpoints:
+  - interval: 5s
+    port: metrics
+    basicAuth:  
+      password:
+        name: cb-secret
+        key: password
+      username:
+        name: cb-secret
+        key: username
+  namespaceSelector: 
+    matchNames:
+    - default
+  selector:
+    matchLabels:
+      app.couchbase.com/name: couchbase

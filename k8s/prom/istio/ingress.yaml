@@ -5,7 +5,7 @@ metadata:
   namespace: prom
 spec:
   hosts: 
-  - '*'
+  - 'grafana.rolancia.com'
   gateways:
   - gateway
   http:

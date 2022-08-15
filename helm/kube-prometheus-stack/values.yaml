@@ -2255,8 +2255,6 @@ prometheus:
       any: true
     ruleSelectorNilUsesHelmValues: false
 
-    serviceMonitorNamespaceSelector:
-      any: true
     serviceMonitorSelectorNilUsesHelmValues: false
     ## If true, pass --storage.tsdb.max-block-duration=2h to prometheus. This is already done if using Thanos
     ##
