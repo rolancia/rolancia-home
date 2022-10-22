@@ -12,7 +12,7 @@ spec:
       name: http
       protocol: HTTP
     hosts:
-    - "*"
+    - "grafana.rolancia.com"
   - port:
       number: 443
       name: grafana-https

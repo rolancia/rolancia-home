@@ -5,7 +5,7 @@ metadata:
   namespace: owncloud
 spec:
   hosts: 
-  - '*'
+  - 'owncloud.rolancia.com'
   gateways:
   - gateway
   http:

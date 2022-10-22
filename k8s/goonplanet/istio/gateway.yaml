@@ -12,7 +12,7 @@ spec:
       name: http
       protocol: HTTP
     hosts:
-    - "*"
+    - "api.goonplanet.co.kr"
   - port:
       number: 443
       name: api-https

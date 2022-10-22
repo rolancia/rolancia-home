@@ -5,7 +5,7 @@ metadata:
   namespace: goonplanet
 spec:
   hosts: 
-  - '*'
+  - 'api.goonplanet.co.kr'
   gateways:
   - gateway
   http:

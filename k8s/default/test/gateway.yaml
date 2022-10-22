@@ -12,7 +12,7 @@ spec:
       name: http
       protocol: HTTP
     hosts:
-    - "*"
+    - "test.rolancia.com"
   - port:
       number: 443
       name: test-https
