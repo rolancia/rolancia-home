@@ -1,0 +1,16 @@
+apiVersion: networking.istio.io/v1alpha3
+kind: Gateway
+metadata:
+  name: cb-gateway
+  namespace: default
+spec:
+  selector:
+    app: istio-ingressgateway
+  servers:
+  - port:
+      number: 8091
+      name: console
+      protocol: HTTP
+    hosts:
+    - "cb.rolancia.com"
+
