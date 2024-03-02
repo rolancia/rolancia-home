@@ -1,0 +1,52 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: g4f
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: g4f
+  template:
+    metadata:
+      labels:
+        app: g4f
+    spec:
+      containers:
+      - name: g4f
+        image: hlohaus789/g4f
+        ports:
+        - containerPort: 8080
+        - containerPort: 1337
+        - containerPort: 7900
+        volumeMounts:
+        - mountPath: /dev/shm
+          name: shmdir
+      volumes:
+      - name: shmdir
+        emptyDir:
+          medium: Memory
+          sizeLimit: "2Gi"
+
+
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: g4f-service
+spec:
+  selector:
+    app: g4f
+  ports:
+    - protocol: TCP
+      name: chat
+      port: 8080
+      targetPort: 8080
+    - protocol: TCP
+      name: api
+      port: 1337
+      targetPort: 1337
+    - protocol: TCP
+      name: rdp
+      port: 7900
+      targetPort: 7900

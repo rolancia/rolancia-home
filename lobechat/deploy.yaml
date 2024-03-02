@@ -1,0 +1,55 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: lobe-chat
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: lobe-chat
+  template:
+    metadata:
+      labels:
+        app: lobe-chat
+    spec:
+      containers:
+      - name: lobe-chat
+        image: lobehub/lobe-chat
+        env:
+        - name: ACCESS_CODE
+          valueFrom:
+            secretKeyRef:
+              name: lobe-chat-secret
+              key: access-code
+        - name: OPENAI_API_KEY
+          valueFrom:
+            secretKeyRef:
+              name: lobe-chat-secret
+              key: openai-api-key
+        - name: OPENAI_PROXY_URL
+          valueFrom:
+            secretKeyRef:
+              name: lobe-chat-secret
+              key: openai-proxy-url
+        - name: CUSTOM_MODELS
+          valueFrom:
+            secretKeyRef:
+              name: lobe-chat-secret
+              key: custom-models
+        ports:
+        - containerPort: 3210
+
+
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: lobe-chat-service
+spec:
+  selector:
+    app: lobe-chat
+  ports:
+    - protocol: TCP
+      port: 3210
+      targetPort: 3210
+

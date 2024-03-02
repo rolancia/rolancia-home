@@ -1,0 +1,38 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: g4f-chat-ingress
+spec:
+  rules:
+  - host: g4f.rolancia.com
+    http:
+      paths:
+      - path: /v1
+        pathType: Prefix
+        backend:
+          service:
+            name: g4f-service
+            port:
+              number: 1337
+      - path: /
+        pathType: Prefix
+        backend:
+          service:
+            name: g4f-service
+            port:
+              number: 8080
+  - host: g4fa.rolancia.com
+    http:
+      paths:
+      - path: /
+        pathType: Prefix
+        backend:
+          service:
+            name: g4f-service
+            port:
+              number: 7900
+  tls:
+  - hosts:
+      - g4f.rolancia.com
+    secretName: tls
+
